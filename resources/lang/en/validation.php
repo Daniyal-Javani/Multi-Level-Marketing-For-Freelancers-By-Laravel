@@ -106,5 +106,6 @@ return [
     */
 
     'attributes' => [],
+    'username_check' => 'The user does not exist.',
 
 ];

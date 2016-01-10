@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Validator;
+use App\User;
+use Session;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -24,6 +27,16 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(GateContract $gate)
     {
+        Validator::extend('username_check', function($attribute, $value, $parameters, $validator) {
+            $user = User::where('name', $value);
+            if ($user->exists() == null) {
+                return false;
+            } else {
+                Session::flash('root_user_id', $user->first()->id);
+                return true;
+            };
+        });
+
         $this->registerPolicies($gate);
 
         //

@@ -7,6 +7,8 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Session;
+
 
 class AuthController extends Controller
 {
@@ -49,9 +51,10 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
+            'name' => 'required|max:255|unique:users',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
+            'root_username' => 'max:255|username_check',
         ]);
     }
 
@@ -63,10 +66,12 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
+        $root_id = Session::get('root_user_id');
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'root_id' => $root_id,
         ]);
     }
 }
