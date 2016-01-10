@@ -11,7 +11,7 @@
                         {!! csrf_field() !!}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Name</label>
+                            <label class="col-md-4 control-label">Username</label>
 
                             <div class="col-md-6">
                                 <input type="text" class="form-control" name="name" value="{{ old('name') }}">
@@ -71,7 +71,7 @@
                             <label class="col-md-4 control-label">Your Root Username</label>
                        
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="root_username">
+                                <input type="text" class="form-control" name="root_username" value="{{ old('root_username') }}">
 
                                 @if ($errors->has('root_username'))
                                     <span class="help-block">
