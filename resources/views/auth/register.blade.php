@@ -66,8 +66,7 @@
                             </div>
                         </div>
 
-                     <div class="form-group{{ $errors->has('root_username') ? ' has-error' : '' }}">
-                        <div class="form-group">
+                        <div class="form-group{{ $errors->has('root_username') ? ' has-error' : '' }}">
                             <label class="col-md-4 control-label">Your Root Username</label>
                        
                             <div class="col-md-6">
@@ -80,7 +79,6 @@
                                 @endif
                             </div>
                         </div>
-                    </div>
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
