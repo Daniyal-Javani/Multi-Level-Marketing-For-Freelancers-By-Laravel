@@ -36,7 +36,7 @@ class HomeController extends Controller
             $down_line2 = User::where('root_id', $person->id)->get();
 
             foreach ($down_line2 as $person2) {
-                $root->childs[$i]->childs[] = new Tree($person->name);
+                $root->childs[$i]->childs[] = new Tree($person2->name);
             }
 
             ++$i;
