@@ -8,9 +8,28 @@
                 <div class="panel-heading">Tree</div>
 
                 <div class="panel-body">
-                    @foreach ($down_line as $person)
-                        {{ $person->name }}
-                    @endforeach
+                    <ul style="list-style-type:disc">
+                        <li>
+                            {{$root->name}}
+                            <ul>
+                                @foreach ($root->childs as $person1)
+                                    <li>
+                                        {{ $person1->name }}
+                                    </li>
+
+                                     <ul style="list-style-type:square">
+                                         @if (! empty($person1->childs))
+                                            @foreach ($person1->childs as $person2)
+                                                <li>
+                                                    {{ $person2->name }}
+                                                </li>
+                                            @endforeach
+                                         @endif
+                                    </ul>
+                                @endforeach
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

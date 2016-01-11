@@ -6,6 +6,7 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
+use App\CustomClasses\Tree;
 
 class HomeController extends Controller
 {
@@ -26,8 +27,21 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $root = new Tree(Auth::user()->name);
         $down_line = User::where('root_id', Auth::user()->id)->get();
+        $i = 0;
+
+        foreach ($down_line as $person) {
+            $root->childs[$i] = new Tree($person->name);
+            $down_line2 = User::where('root_id', $person->id)->get();
+
+            foreach ($down_line2 as $person2) {
+                $root->childs[$i]->childs[] = new Tree($person->name);
+            }
+
+            ++$i;
+        }
         
-        return view('home', compact('down_line'));
+        return view('home', compact('root'));
     }
 }
