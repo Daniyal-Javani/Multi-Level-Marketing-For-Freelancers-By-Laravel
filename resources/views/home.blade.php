@@ -12,21 +12,23 @@
                         <li>
                             {{$root->name}}
                             <ul>
-                                @foreach ($root->childs as $person1)
-                                    <li>
-                                        {{ $person1->name }}
-                                    </li>
+                                @if (! empty($root->childs))
+                                    @foreach ($root->childs as $person1)
+                                        <li>
+                                            {{ $person1->name }}
+                                        </li>
 
-                                     <ul style="list-style-type:square">
-                                         @if (! empty($person1->childs))
-                                            @foreach ($person1->childs as $person2)
-                                                <li>
-                                                    {{ $person2->name }}
-                                                </li>
-                                            @endforeach
-                                         @endif
-                                    </ul>
-                                @endforeach
+                                         <ul style="list-style-type:square">
+                                             @if (! empty($person1->childs))
+                                                @foreach ($person1->childs as $person2)
+                                                    <li>
+                                                        {{ $person2->name }}
+                                                    </li>
+                                                @endforeach
+                                             @endif
+                                        </ul>
+                                    @endforeach
+                                @endif
                             </ul>
                         </li>
                     </ul>
