@@ -29,7 +29,6 @@
     <nav class="navbar navbar-default">
         <div class="container">
             <div class="navbar-header">
-
                 <!-- Collapsed Hamburger -->
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#spark-navbar-collapse">
                     <span class="sr-only">Toggle Navigation</span>
@@ -52,7 +51,7 @@
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
-                    <!-- Authentication Links -->
+                    <!-- Authentication Links --> 
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>
@@ -71,7 +70,12 @@
             </div>
         </div>
     </nav>
-
+    @if (session()->has('flash_message'))
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>{{ session()->get('flash_message') }}</strong>
+                </div>
+            @endif
     @yield('content')
 
     <!-- JavaScripts -->

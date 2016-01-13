@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
+use Auth;
+
 class CreateInvoiceRequest extends Request
 {
     /**
@@ -13,7 +15,12 @@ class CreateInvoiceRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        $isAdmin = Auth::user()->admin;
+        if($isAdmin !== null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
