@@ -24,8 +24,17 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * A use has one admin
+     * @return [type] [description]
+     */
     public function admin()
     {
         return $this->hasOne('App\Admin');
+    }
+
+    public function invoice()
+    {
+        return $this->hasMany('App\Invoice');  //Many to one relationships
     }
 }

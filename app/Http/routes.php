@@ -25,6 +25,10 @@
 */
 
 Route::group(['middleware' => ['web']], function () {
+    Route::resource('admin', 'AdminController');
+});
+
+Route::group(['middleware' => ['web']], function () {
     Route::get('/', 'WelcomeController@index');
 });
 

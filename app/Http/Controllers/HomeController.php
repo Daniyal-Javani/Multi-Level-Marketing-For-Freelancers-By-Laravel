@@ -27,6 +27,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $isAdmin = Auth::user()->admin;
+        if($isAdmin !== null) {
+            return redirect()->action('AdminController@index');
+        }
         $root = new Tree(Auth::user()->name);
         $down_line = User::where('root_id', Auth::user()->id)->get();
         $i = 0;
@@ -41,7 +45,7 @@ class HomeController extends Controller
 
             ++$i;
         }
-        
+
         return view('home', compact('root'));
     }
 }
