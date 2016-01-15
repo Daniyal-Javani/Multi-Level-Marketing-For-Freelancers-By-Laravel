@@ -25,16 +25,26 @@ class User extends Authenticatable
     ];
 
     /**
-     * A use has one admin
-     * @return [type] [description]
+     * One user has one admin
      */
     public function admin()
     {
         return $this->hasOne('App\Admin');
     }
 
+    /**
+     * One user has many invoices
+     */
     public function invoice()
     {
         return $this->hasMany('App\Invoice');  //Many to one relationships
+    }
+
+    /**
+     * One user has many commission
+     */
+    public function commission()
+    {
+        return $this->hasMany('App\Commission');  //Many to one relationships
     }
 }

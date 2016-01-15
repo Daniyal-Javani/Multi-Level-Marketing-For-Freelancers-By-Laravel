@@ -16,11 +16,18 @@ class Invoice extends Model
     ];
 
     /**
-     * A invoice belongs to one user
-     * @return [type] [description]
+     * One invoice belongs to one user
      */
 	public function user()
     {
    		return $this->belongsTo('App\User');
+    }
+
+    /**
+     * One invoice has many commission
+     */
+    public function commission()
+    {
+        return $this->hasMany('App\Commission');  //Many to one relationships
     }
 }
