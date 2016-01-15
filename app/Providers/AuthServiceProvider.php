@@ -32,7 +32,9 @@ class AuthServiceProvider extends ServiceProvider
             if ($user->exists() == null) {
                 return false;
             } else {
-                Session::flash('root_user_id', $user->first()->id);
+                $user = $user->first();
+                Session::flash('root_user_id', $user->id);
+                Session::flash('root_id', $user->root_id);
                 return true;
             };
         });

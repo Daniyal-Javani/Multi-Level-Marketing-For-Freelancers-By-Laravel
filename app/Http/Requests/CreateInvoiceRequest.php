@@ -31,6 +31,7 @@ class CreateInvoiceRequest extends Request
     public function rules()
     {
         return [
+            'username' => 'required|min:3|username_check',
             'name' => 'required|min:3',
             'amount'  => 'required|numeric',
         ];

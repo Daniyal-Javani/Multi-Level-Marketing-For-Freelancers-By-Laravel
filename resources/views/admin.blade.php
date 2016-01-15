@@ -8,6 +8,16 @@
                 <div class="panel-heading">Submit invoice</div>
                 <div class="panel-body">
                     {!! Form::model($invoice = new App\Invoice ,['url' => 'admin']) !!}
+                        <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                            {!! Form::label('username', 'Username:') !!}
+                            {!! Form::input('text', 'username', $invoice->name, ['class' => 'form-control', 'value' => old('username')]) !!}
+                            @if ($errors->has('username'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('username') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             {!! Form::label('name', 'Name:') !!}
                             {!! Form::input('text', 'name', $invoice->name, ['class' => 'form-control', 'value' => old('name')]) !!}
