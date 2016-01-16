@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Auth;
 use App\Http\Requests\CreateInvoiceRequest;
 use App\User;
+use App\Invoice;
 use App;
 use Session;
 
@@ -34,7 +35,8 @@ class AdminController extends Controller
         if ($isAdmin === null) {
             return redirect()->action('HomeController@index');
         }
-    	return view('admin');
+        $invoices = Invoice::latest()->get()->take(5);
+    	return view('admin', compact('invoices'));
     }
 
     public function store(CreateInvoiceRequest $request)
