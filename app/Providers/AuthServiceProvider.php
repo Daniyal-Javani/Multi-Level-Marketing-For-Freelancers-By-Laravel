@@ -33,7 +33,7 @@ class AuthServiceProvider extends ServiceProvider
                 return false;
             } else {
                 $user = $user->first();
-                Session::flash('root_user_id', $user->id);
+                Session::flash('user_id', $user->id);
                 Session::flash('root_id', $user->root_id);
                 return true;
             };

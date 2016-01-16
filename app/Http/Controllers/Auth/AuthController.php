@@ -66,7 +66,7 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        $root_id = Session::get('root_user_id');
+        $root_id = Session::get('root_id');
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
