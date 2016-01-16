@@ -46,7 +46,7 @@
                     {!! Form::close() !!}
                 </div>
             </div>
-                        <div class="panel panel-default">
+            <div class="panel panel-default">
                 <div class="panel-heading">Last Invoices</div>
                 <div class="panel-body">
                     <table class="table table-striped table-hover table-responsive">

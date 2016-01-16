@@ -34,6 +34,27 @@
                     </ul>
                 </div>
             </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">Last Invoices</div>
+                <div class="panel-body">
+                    <table class="table table-striped table-hover table-responsive">
+                        <thead>
+                          <tr>
+                            <th>Name</th>
+                            <th>Amount</th>
+                          </tr>
+                        </thead>
+                            <tbody>
+                            @foreach ($invoices as $invoice_record)
+                                <tr>
+                                    <td>{{$invoice_record->name}}</td>
+                                    <td>{{$invoice_record->amount}}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>

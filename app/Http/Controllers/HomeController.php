@@ -46,6 +46,7 @@ class HomeController extends Controller
             ++$i;
         }
 
-        return view('home', compact('root'));
+        $invoices = Auth::user()->invoice()->latest()->get()->take(5);
+        return view('home', compact('root'), compact('invoices'));
     }
 }

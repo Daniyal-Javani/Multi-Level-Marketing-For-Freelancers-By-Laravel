@@ -41,9 +41,9 @@ class AdminController extends Controller
 
     public function store(CreateInvoiceRequest $request)
     {
-        $invoice = Auth::user()->invoice()->create($request->all());
         $user_id = Session::get('user_id');
         $user = User::where('id', $user_id)->first();
+        $invoice = $user->invoice()->create($request->all());
         $user_balance = $user->balance;
         if ($user->balance != 0) {
             session()->flash('flash_message', 'Your invoice has been created successfully! The amount minus user balance is: '.($request->amount - $user->balance));
@@ -97,6 +97,7 @@ class AdminController extends Controller
                 }
             }
         }
-        return view('admin');
+        $invoices = Invoice::latest()->get()->take(5);
+        return view('admin', compact('invoices'));
     }
 }
